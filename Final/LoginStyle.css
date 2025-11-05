@@ -81,6 +81,10 @@ body {
     cursor: pointer;
     font-weight: 550;
 }
+.wrapper .btn:hover{
+    background: #12191f;
+    color: white;
+}
 .wrapper .register-link{
     font-size: 14.5px;
     text-align: center;
@@ -95,4 +99,5 @@ body {
 }
 .register-link a:hover{
     text-decoration: underline;
+    transition: all 0.3s ease;
 }   

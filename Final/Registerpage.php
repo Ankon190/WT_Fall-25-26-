@@ -3,6 +3,12 @@
 <head>
     <title>Register</title>
     <link rel="stylesheet" href="RegisterPageStyle.css">
+    <style>
+        .wrapper .btn:hover{
+            background: #12191f;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <div class="wrapper">
