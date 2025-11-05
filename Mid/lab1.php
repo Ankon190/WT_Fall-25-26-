@@ -10,10 +10,14 @@
             width: 80%;
             font-size: 20px;
         }
+        table{
+            margin:0 auto;
+            width: 60%;
+        }
     </style>
 </head>
 <body style="background-color:rgb(167, 176, 170)">
-    <table style="align:center;background-color:rgba(246, 230, 241, 1); margin:200px; padding-left: 20px">
+    <table style="background-color:rgba(246, 230, 241, 1);padding-left: 20px">
         <tr>
             <td style="border-bottom: 2.5px solid red;"><h3 id="heading" style="color:red">Student Registration Information</h3></td>
         </tr>
