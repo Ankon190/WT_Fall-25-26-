@@ -78,7 +78,10 @@
 
     <script>
         function validation(){
-            var name = document.getElementById("Fname").value.trim();
+            let name = document.getElementById("Fname").value.trim();
+            let email = document.getElementById("Email").value.trim();
+            let password = document.getElementById("Password").value;
+            let cpassword = document.getElementById("Cpassword").value;
         }
     </script>
 </body>
