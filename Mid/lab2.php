@@ -88,6 +88,9 @@
             </tr>
         </table>
     </div>
+    <table class="selectedCourse">
+
+    </table>
 
     <script>
         function validation(){
