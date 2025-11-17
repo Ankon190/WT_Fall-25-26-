@@ -32,28 +32,28 @@
                 <td>Full Name</td>
             </tr>
             <tr>
-                <td><input type="text"></td>
+                <td><input type="text" id="Fname"></td>
             </tr>
             <tr>
                 <td>Email</td>
             </tr>
             <tr>
-                <td><input type="email"></td>
+                <td><input type="email" id="Email"></td>
             </tr>
             <tr>
                 <td>Password</td>
             </tr>
             <tr>
-                <td><input type="password"></td>
+                <td><input type="password" id="Password"></td>
             </tr>
             <tr>
                 <td>Confirm Password</td>
             </tr>
             <tr>
-                <td><input type="password"></td>
+                <td><input type="password" id="Cpassword"></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Register"></td>
+                <td><input type="submit" value="Register" id="RegisterButton"></td>
             </tr>
         </table>
     </div>
@@ -75,5 +75,11 @@
             </tr>
         </table>
     </div>
+
+    <script>
+        function validation(){
+            var name = document.getElementById("Fname").value.trim();
+        }
+    </script>
 </body>
 </html>
