@@ -8,8 +8,9 @@ if(!isset($_SESSION['username'])){
     header("Location: Login.php");
     exit();
 }
-//declaring variables
-    $patient_name = "John Doe";
+
+require '../php/bookingConfirmation.php';
+
 
 ?>
 
@@ -53,132 +54,159 @@ if(!isset($_SESSION['username'])){
         </h2>
     </div>
     <!--search section-->
-    <div class="search-section">
-        <div class="search-input">
-            <i class="fas fa-search"></i>
-            <input class="search-box" type="text" placeholder="Search by doctor name">
+    <form method="post" action="">
+        <div class="search-section">
+            <div class="search-input">
+                <i class="fas fa-search"></i>
+                <input class="search-box" name="search_name" type="text" placeholder="Search by doctor name" >
+            </div>
+            <div class="search-input">
+                <i class="fas fa-user-md"></i>
+                <select name="search_specialty" class="specialist-dropdown">
+                    <option value="" selected>Select Specialist</option>
+                    <option value="Cardiologist">Cardiologist</option>
+                    <option value="Dermatologist">Dermatologist</option>
+                    <option value="Neurologist">Neurologist</option>
+                    <option value="Pediatrician">Pediatrician</option>
+                    <option value="Psychiatrist">Psychiatrist</option>
+                    <option value="Surgeon">Surgeon</option>
+                    <option value="Medicine">Medicine</option>
+                </select>
+            </div>
+            <button type="submit" name="search" class="search-btn">Search</button>
         </div>
-        <div class="search-input">
-            <i class="fas fa-user-md"></i>
-            <select class="specialist-dropdown">
-                <option value="" selected>Select Specialist</option>
-                <option value="cardiologist">Cardiologist</option>
-                <option value="dermatologist">Dermatologist</option>
-                <option value="neurologist">Neurologist</option>
-                <option value="pediatrician">Pediatrician</option>
-                <option value="psychiatrist">Psychiatrist</option>
-            </select>
-        </div>
-        <button type="submit" class="search-btn">Search</button>
-    </div>
+    </form>
 <!--doctor list section-->
     <div class="doctor-lists">
-        <!--doctor CARD 1-->
+        <?php if(empty($doctors)): ?>
+            <div class="no-doctors">
+                <p>No doctors available at the moment.</p>
+                <p>Please check back later.</p>
+            </div>
+        <?php else: ?>
+        <!--Available doctor CARDs -->
+        <?php foreach ($doctors as $doctor): ?>
         <div class="doctor-card">
             <div class="doctor-img">
-                <img src="../images/portrait-professional-medical-worker-posing-picture-with-arms-folded.jpg" alt="Dr. A">
+                <?php if (!empty($doctor['photo'])): ?>
+                    <img src="../<?php echo htmlspecialchars($doctor['photo']); ?>" alt="<?php echo htmlspecialchars($doctor['user_name']); ?>">
+                <?php endif; ?>
             </div>
             <div class="doctor-info">
-                <h3 class="doctor-name">Dr. A</h3>
-                <p class="doctor-specialty">Cardiologist</p>
-                <p class="doctor-availability">Available: Mon, Wed, Fri - 10:00 AM to 2:00 PM</p>
-                <button class="book-appointment-btn">Book Appointment</button>
+                <h3 class="doctor-name">Dr. <?php echo htmlspecialchars($doctor['user_name']); ?></h3>
+                <p class="doctor-specialty">Specialization: <?php echo htmlspecialchars($doctor['specilization']); ?></p>
+                <p class="doctor-availability">Available: <?php echo htmlspecialchars($doctor['availability_day']); ?></p>
+                <p><?php echo htmlspecialchars($doctor['availability_time_start']); ?> to <?php echo htmlspecialchars($doctor['availability_time_end']); ?></p>
+                <button class="book-appointment-btn" onclick="OpenModal('<?php echo $doctor['user_name']; ?>', 
+                                                     '<?php echo $doctor['specilization']; ?>',
+                                                     '<?php echo $doctor['user_id'] ?? ''; ?>')">Book Appointment</button>
             </div>
         </div>
-        <!--doctor CARD 2-->
-        <div class="doctor-card">
-            <div class="doctor-img">
-                <img src="../images/portrait-professional-medical-worker-posing-picture-with-arms-folded.jpg" alt="Dr. A">
-            </div>
-            <div class="doctor-info">
-                <h3 class="doctor-name">Dr. B</h3>
-                <p class="doctor-specialty">Neurologist</p>
-                <p class="doctor-availability">Available: Mon, Wed, Fri - 10:00 AM to 2:00 PM</p>
-                <button class="book-appointment-btn">Book Appointment</button>
-            </div>
-        </div>
-
-        <!--doctor CARD 3-->
-        <div class="doctor-card">
-            <div class="doctor-img">
-                <img src="../images/portrait-professional-medical-worker-posing-picture-with-arms-folded.jpg" alt="Dr. A">
-            </div>
-            <div class="doctor-info">
-                <h3 class="doctor-name">Dr. C</h3>
-                <p class="doctor-specialty">Neurologist</p>
-                <p class="doctor-availability">Available: Mon, Wed, Fri - 10:00 AM to 2:00 PM</p>
-                <button class="book-appointment-btn">Book Appointment</button>
-            </div>
-        </div>
-
-        <!--doctor CARD 4-->
-        <div class="doctor-card">
-            <div class="doctor-img">
-                <img src="../images/portrait-professional-medical-worker-posing-picture-with-arms-folded.jpg" alt="Dr. A">
-            </div>
-            <div class="doctor-info">
-                <h3 class="doctor-name">Dr. D</h3>
-                <p class="doctor-specialty">Neurologist</p>
-                <p class="doctor-availability">Available: Mon, Wed, Fri - 10:00 AM to 2:00 PM</p>
-                <button class="book-appointment-btn">Book Appointment</button>
-            </div>
-        </div>
-
-        <!--doctor CARD 5-->
-        <div class="doctor-card">
-            <div class="doctor-img">
-                <img src="../images/portrait-professional-medical-worker-posing-picture-with-arms-folded.jpg" alt="Dr. A">
-            </div>
-            <div class="doctor-info">
-                <h3 class="doctor-name">Dr. E</h3>
-                <p class="doctor-specialty">Cardiologist</p>
-                <p class="doctor-availability">Available: Mon, Wed, Fri - 10:00 AM to 2:00 PM</p>
-                <button class="book-appointment-btn">Book Appointment</button>
-            </div>
-        </div>
-        <!--doctor CARD 6-->
-        <div class="doctor-card">
-            <div class="doctor-img">
-                <img src="../images/portrait-professional-medical-worker-posing-picture-with-arms-folded.jpg" alt="Dr. A">
-            </div>
-            <div class="doctor-info">
-                <h3 class="doctor-name">Dr. F</h3>
-                <p class="doctor-specialty">Neurologist</p>
-                <p class="doctor-availability">Available: Mon, Wed, Fri - 10:00 AM to 2:00 PM</p>
-                <button class="book-appointment-btn">Book Appointment</button>
-            </div>
-        </div>
-
-        <!--doctor CARD 7-->
-        <div class="doctor-card">
-            <div class="doctor-img">
-                <img src="../images/portrait-professional-medical-worker-posing-picture-with-arms-folded.jpg" alt="Dr. A">
-            </div>
-            <div class="doctor-info">
-                <h3 class="doctor-name">Dr. G</h3>
-                <p class="doctor-specialty">Neurologist</p>
-                <p class="doctor-availability">Available: Mon, Wed, Fri - 10:00 AM to 2:00 PM</p>
-                <button class="book-appointment-btn">Book Appointment</button>
-            </div>
-        </div>
-
-        <!--doctor CARD 8-->
-        <div class="doctor-card">
-            <div class="doctor-img">
-                <img src="../images/portrait-professional-medical-worker-posing-picture-with-arms-folded.jpg" alt="Dr. A">
-            </div>
-            <div class="doctor-info">
-                <h3 class="doctor-name">Dr. H</h3>
-                <p class="doctor-specialty">Neurologist</p>
-                <p class="doctor-availability">Available: Mon, Wed, Fri - 10:00 AM to 2:00 PM</p>
-                <button class="book-appointment-btn">Book Appointment</button>
-            </div>
-        </div>
-
+        <?php endforeach; ?>
+        <?php endif; ?>
     </div>
+
+    <!--booking modal-->
+    <dialog id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeBookingModal()">&times;</span>
+            <h2>Book Appointment</h2>
+    <!--show error if any error occurs-->
+
+    <!--book appoinment modal-->
+            <form method="post" action="">
+                <input type="text" name="doctor_name" id="modalDoctorName" readonly>
+                <input type="text" name="doctor_id" id="modalDoctorId" readonly>
+                <input type="text" name="doctor_specialty" id="modalDoctorSpecialty" readonly>
+                
+                <div class="form-group">
+                    <label for="patientName">Patient Name</label>
+                    <input type="text" id="patientName" value="<?php echo htmlspecialchars($patient_name); ?>" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="doctorInfo">Doctor</label>
+                    <input type="text" id="doctorInfo" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="appointment_date">Appointment Date </label>
+                    <input type="date" id="appointment_date" name="appointment_date" min="<?php echo date('Y-m-d'); ?>">
+                </div>
+                
+                <div class="form-group">
+                    <label for="appointment_time">Appointment Time *</label>
+                    <select id="appointment_time" name="appointment_time" required>
+                        <option value="">Select Time Slot</option>
+                        <option value="09:00 AM">09:00 AM</option>
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="12:00 PM">12:00 PM</option>
+                        <option value="02:00 PM">02:00 PM</option>
+                        <option value="03:00 PM">03:00 PM</option>
+                        <option value="04:00 PM">04:00 PM</option>
+                        <option value="05:00 PM">05:00 PM</option>
+                        <option value="06:00 PM">06:00 PM</option>
+                        <option value="07:00 PM">07:00 PM</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="symptoms">Symptoms (Optional)</label>
+                    <textarea id="symptoms" name="symptoms" placeholder="Describe your symptoms"></textarea>
+                </div>
+                
+                <button type="submit" name="confirm_booking" class="submit-btn">Confirm Appointment</button>
+            </form>
+        </div>
+    </dialog>
 
 <!-- hamburger menu js code -->
     <script src="../js/hamburgerMenu.js"> </script>
+    <script>
+         // Get modal element
+        var modal = document.getElementById('bookingModal');
+        
+        // Function to open booking modal
+        function OpenModal(doctorName, doctorSpecialty, doctorId) {
+            // Set doctor information in hidden fields
+            document.getElementById('modalDoctorName').value = doctorName;
+            document.getElementById('modalDoctorSpecialty').value = doctorSpecialty;
+            document.getElementById('modalDoctorId').value = doctorId;
+            
+            // Display doctor info in readonly field
+            document.getElementById('doctorInfo').value = doctorName + ' - ' + doctorSpecialty;
+            
+            // Set minimum date to today
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('appointment_date').min = today;
+            
+            // Show modal
+            modal.style.display = 'block';
+        }
+        
+        // Function to close booking modal
+        function closeBookingModal() {
+            modal.style.display = 'none';
+            // Reset form
+            document.querySelector('#bookingModal form').reset();
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeBookingModal();
+            }
+        };
+        
+        // Set default date to tomorrow
+        window.onload = function() {
+            var tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            var tomorrowStr = tomorrow.toISOString().split('T')[0];
+            document.getElementById('appointment_date').value = tomorrowStr;
+        };
+    </script>
 
 
 </body>
