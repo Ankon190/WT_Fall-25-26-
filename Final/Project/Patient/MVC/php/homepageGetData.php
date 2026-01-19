@@ -2,7 +2,7 @@
 //session created
 session_start();
 if(!isset($_SESSION['username'])){
-    header("Location: Login.php");
+    header("Location: /WT_Fall-25-26-/Final/Project/index.php");
     exit();
 }
 

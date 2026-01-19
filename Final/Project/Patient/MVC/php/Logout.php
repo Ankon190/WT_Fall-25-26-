@@ -9,6 +9,6 @@ if(isset($_COOKIE['remember_me'])) {
     setcookie('remember_me', '', time() - 3600, '/');
 }
 
-header("Location: ../html/Login.php");
+header("Location: /WT_Fall-25-26-/Final/Project/index.php");
 exit();
 ?>

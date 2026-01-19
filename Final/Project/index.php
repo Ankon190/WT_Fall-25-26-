@@ -1,7 +1,7 @@
 <?php
 //database connection
-require '../db/db_connect.php';
-require '../php/login_db_Info_check.php';
+require 'Patient/MVC/db/db_connect.php';
+require 'Patient/MVC/php/login_db_Info_check.php';
 ?>
 
 
@@ -10,7 +10,7 @@ require '../php/login_db_Info_check.php';
 <head>
     
     <title>Login</title>
-    <link rel="stylesheet" href="../css/LoginStyle.css">
+    <link rel="stylesheet" href="Patient/MVC/css/LoginStyle.css">
 </head>
 <body>
     <div class="wrapper">

@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
         if(password_verify($password, $user['password'])) {
             // Password is correct, start a session
             $_SESSION['username'] = $user['user_name'];
-            header("Location: HomePage.php");
+            header("Location: Patient\MVC\html\HomePage.php");
             exit();
         } 
         else {
