@@ -7,7 +7,7 @@ require '../php/medicalHistoryGetData.php';
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home</title>
+    <title>Medical History</title>
     <link rel="stylesheet" href="../css/MedicalHistoryStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>

@@ -7,7 +7,7 @@ require '../php/update_db_EditedData.php';
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home</title>
+    <title>Profile Page</title>
     <link rel="stylesheet" href="../css/ProfileStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>

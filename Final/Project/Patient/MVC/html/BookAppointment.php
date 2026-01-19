@@ -5,7 +5,7 @@ require '../db/db_connect.php';
 session_start();
 
 if(!isset($_SESSION['username'])){
-    header("Location: Login.php");
+    header("Location: /WT_Fall-25-26-/Final/Project/index.php");
     exit();
 }
 
@@ -17,7 +17,7 @@ require '../php/bookingConfirmation.php';
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home</title>
+    <title>Book Appointment</title>
     <link rel="stylesheet" href="../css/BookAppointmentStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>

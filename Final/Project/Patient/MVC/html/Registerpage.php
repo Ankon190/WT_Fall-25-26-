@@ -8,7 +8,7 @@ require '../php/reg_validation.php';
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Register</title>
+    <title>Register Page</title>
     <link rel="stylesheet" href="../css/RegisterPageStyle.css">
     <style>
         
