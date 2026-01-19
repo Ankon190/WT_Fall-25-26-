@@ -89,7 +89,7 @@ require '../php/bookingConfirmation.php';
         <div class="doctor-card">
             <div class="doctor-img">
                 <?php if (!empty($doctor['photo'])): ?>
-                    <img src="../<?php echo htmlspecialchars($doctor['photo']); ?>" alt="<?php echo htmlspecialchars($doctor['user_name']); ?>">
+                    <img src="../uploads/<?php echo htmlspecialchars($doctor['photo']); ?>" alt="<?php echo htmlspecialchars($doctor['user_name']); ?>">
                 <?php endif; ?>
             </div>
             <div class="doctor-info">

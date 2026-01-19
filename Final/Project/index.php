@@ -29,7 +29,7 @@ require 'Patient/MVC/php/login_db_Info_check.php';
             </div>
             <button type="submit" class="btn">Login</button>
             <div class="register-link">
-                <p>Don't have an account? <a href="Registerpage.php">Register</a></p>
+                <p>Don't have an account? <a href="Patient/MVC/html/Registerpage.php">Register</a></p>
             </div>
         </form>
     </div>

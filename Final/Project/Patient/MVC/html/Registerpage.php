@@ -80,7 +80,7 @@ require '../php/reg_validation.php';
 
             // Create login button
             var loginbtn = document.createElement('a');
-            loginbtn.href = "Login.php";
+            loginbtn.href = "/WT_Fall-25-26-/Final/Project/index.php";
             loginbtn.textContent = "Login";
             loginbtn.className = "btn";
             loginbtn.style.display = "block";
